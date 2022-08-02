@@ -1,4 +1,5 @@
 <!-- WhatsHelp.io widget -->
+<script type="text/javascript" async="" src="http://static.whatshelp.io/widget-send-button/js/init.js"></script>
   <script type="text/javascript">
     (function () {
         var options = {
