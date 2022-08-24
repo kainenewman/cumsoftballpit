@@ -1,0 +1,4 @@
+#! // Geo Search MySQL Query searchstring to Laravel 5.4 Query builder
+;
+;
+$sqlstring2 = "SELECT DISTINCT geodb.plz,geodb.ort,(6367.41SQRT(2(1-cos(RADIANS(geodb.latitude))cos(".$lat.")(sin(RADIANS(geodb.longitude))sin(".$lng.")+cos(RADIANS(geodb.longitude))cos(".$lng."))-sin(RADIANS(geodb.latitude)) sin(".$lat.")))) AS Distance FROM geodb AS geodb WHERE (6367.41SQRT(2*(1-cos(RADIANS(geodb.latitude))cos(".$lat.")(sin(RADIANS(geodb.longitude))*sin(".$lng.")+cos(RADIANS(geodb.longitude))*cos(".$lng."))-sin(RADIANS(geodb.latitude))*sin(".$lat."))) <= '".$radius."') ORDER BY Distance";

@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<head>
+<!--- 
+<span id="messageElement"></span>
+<form id="pingForm" action="form_action.asp">
+<input type="button" onclick="pingToggle()" value = "Toggle Vehicle Ping Mode">
+</form>
+<script>
+var receivedMessage = 'waiting for data';
+var pingState = 1;
+
+function pingToggle() { pingState = -1 * (3 - pingState); }
+
+window.onload = refreshMessage('messageElement');
+
+function refreshMessage(elementID)
+{
+	receivedMessage = parent.topFrame.receivedData;
+	var receivedBytes = [];
+	var messageLen = 0;
+
+	//decode data from car
+	if (parent.topFrame.receiveState)
+	{
+		messageLen = receivedMessage.length;
+
+		for (var i = 0; i < messageLen; i+=2)
+		{
+			receivedBytes.push((receivedMessage.charCodeAt(i) - 65) * 16 + (receivedMessage.charCodeAt(i+1) - 65));
+		}
+	}
+	var pingResult = receivedBytes[0] + receivedBytes[1] * 256;
+
+	//prepare outgoing steering and motion command for client display
+	var steeringReportString;
+	var motionReportString;
+	var servoTranslate = parseInt((100 - parseInt(parent.topFrame.joyX + 100)) / 12);
+	var motorTranslate = parseInt((parseInt(parent.topFrame.joyY + 100) - 100) / 5);
+	if (servoTranslate > 0) { steeringReportString = 'Steering: right ' + servoTranslate + '<br />'; }
+	else if (servoTranslate < 0) { steeringReportString = 'Steering: left ' + Math.abs(servoTranslate) + '<br />'; }
+	else { steeringReportString = 'Steering: straight<br />'; }
+	if (motorTranslate > 0) { motionReportString = 'Motion: forward ' + motorTranslate + '<br />'; }
+	else if (motorTranslate < 0) { motionReportString = 'Motion: reverse ' + Math.abs(motorTranslate) + '<br />'; }
+	else { motionReportString = 'Motion: not moving<br />'; }
+
+	//if available, prepare incoming ping data for client display
+	if (messageLen == 4 && pingState == 1)
+	{ clientReport = steeringReportString + motionReportString + 'Ping echo time: ' + pingResult + ' microseconds<br /><br />'; }
+	else
+	{ clientReport = steeringReportString + motionReportString + 'Ping echo time: NO DATA<br /><br />'; }
+
+	//display outgoing commands and incoming data
+	document.getElementById(elementID).innerHTML = clientReport;
+	setTimeout('refreshMessage("'+elementID+'");','100');
+	return true;
+}
+
+</script>
+
+</head>
+
+</html>
