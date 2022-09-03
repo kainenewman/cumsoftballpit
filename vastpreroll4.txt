@@ -1,0 +1,54 @@
+
+Doctype: XML
+
+<VAST xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.iab.com/VAST" version="4.0">
+<Ad id="20001" sequence="1" conditionalAd="false">
+<InLine>
+<!--  required  -->
+<AdSystem version="4.0">iabtechlab</AdSystem>
+<!--  required  -->
+<AdTitle>iabtechlab video ad</AdTitle>
+<Error>http://h.imedia.cz/error</Error>
+<Impression id="Impression-ID-1">http://h.imedia.cz/track/impression-1</Impression>
+<Impression id="Impression-ID-2">http://h.imedia.cz/aaaa/impression-2</Impression>
+<Impression id="Impression-ID-3">http://h.imedia.cz/track/impression-2.jpg</Impression>
+<!--  required  -->
+<Creatives>
+<Creative id="5480" sequence="1" adId="2447226">
+<!--  required  -->
+<UniversalAdId idRegistry="Ad-ID" idValue="8465">8465</UniversalAdId>
+<!--  publisher may define a minimum skipoffset value   -->
+<Linear skipoffset="00:00:10">
+<!--  required  -->
+<Duration>00:00:30</Duration>
+<!--  required  -->
+<MediaFiles>
+<MediaFile id="5241" delivery="progressive" type="video/mp4" width="1280" height="720" scalable="1" maintainAspectRatio="1">
+<![CDATA[ ./media/Ikea Bumper Ads 30 sec.mp4 ]]>
+</MediaFile>
+</MediaFiles>
+<!-- 
+            <TrackingEvents>
+              <Tracking event="start" offset="10:05:20">http://example.com/tracking/start</Tracking>
+              <Tracking event="firstQuartile">http://example.com/tracking/firstQuartile</Tracking>
+              <Tracking event="midpoint">http://example.com/tracking/midpoint</Tracking>
+              <Tracking event="thirdQuartile">http://example.com/tracking/thirdQuartile</Tracking>
+              <Tracking event="complete">http://example.com/tracking/complete</Tracking>
+            </TrackingEvents>
+             -->
+<TrackingEvents>
+<Tracking event="start">https://h.imedia.cz/start</Tracking>
+<Tracking event="firstQuartile">https://h.imedia.cz/1</Tracking>
+<Tracking event="firstQuartile">https://h.imedia.cz/2</Tracking>
+</TrackingEvents>
+<VideoClicks>
+<ClickThrough id="blog">
+<![CDATA[ https://iabtechlab.com ]]>
+</ClickThrough>
+</VideoClicks>
+</Linear>
+</Creative>
+</Creatives>
+</InLine>
+</Ad>
+</VAST>
